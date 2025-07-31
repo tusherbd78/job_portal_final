@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow rounded-3 col-md-8 mx-auto">
+    <div class="card-body">
+      <h2 class="mb-4 text-primary">Edit Job: {{ job.title }}</h2>
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{% url 'dashboard' %}" class="btn btn-secondary ms-2">Cancel</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>All Submitted Resumes</h2>
+<ul>
+  {% for app in resumes %}
+    <li><strong>{{ app.applicant.username }}</strong> for <strong>{{ app.job.title }}</strong> - <a href="{{ app.resume.url }}">View Resume</a></li>
+  {% empty %}
+    <li>No resumes submitted yet.</li>
+  {% endfor %}
+</ul>
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+{% endblock %}

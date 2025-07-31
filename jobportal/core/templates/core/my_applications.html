@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Applications</h2>
+<form method="get" style="margin-bottom: 1em;">
+  <label>Status: </label>
+  <select name="status" onchange="this.form.submit()">
+    <option value="">All</option>
+    <option value="pending" {% if selected_status == "pending" %}selected{% endif %}>Pending</option>
+    <option value="approved" {% if selected_status == "approved" %}selected{% endif %}>Approved</option>
+    <option value="rejected" {% if selected_status == "rejected" %}selected{% endif %}>Rejected</option>
+  </select>
+</form>
+<table>
+  <tr>
+    <th>Job</th>
+    <th>Status</th>
+    <th>Resume</th>
+    <th>Cover Letter</th>
+  </tr>
+  {% for app in applications %}
+  <tr>
+    <td>{{ app.job.title }}</td>
+    <td>
+      {% if app.status == 'approved' %}
+        <span style="color:green;">Approved</span>
+      {% elif app.status == 'rejected' %}
+        <span style="color:red;">Rejected</span>
+      {% else %}
+        <span style="color:gray;">Pending</span>
+      {% endif %}
+    </td>
+    <td><a href="{{ app.resume.url }}" download>Download</a></td>
+    <td>{{ app.cover_letter|linebreaks }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

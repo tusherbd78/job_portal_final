@@ -1,0 +1,184 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.site-banner {
+    height: 2cm;
+    /* background: url('/static/images/banner.png') no-repeat center center; */
+    /* background-size: cover; */
+    color: white;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    padding-left: 20px;
+    text-shadow: 0 1px 2px black;
+    background-color: #004080;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+}
+
+
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+h2 {
+    color: #343a40;
+}
+input[type="text"], input[type="file"], textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    background: #ffffff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+nav {
+    background: #343a40;
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+}
+
+nav a, nav button {
+    color: #ff6 !important;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+
+nav a:hover, nav button:hover {
+    color: #ffc107 !important;
+    text-decoration: underline;
+}
+
+.pagination a {
+  margin: 0 5px;
+  text-decoration: none;
+}
+.pagination span {
+  margin: 0 10px;
+}
+
+
+
+
+
+
+
+
+.job-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.job-list li {
+    background: #f9f9f9;
+    border: 1px solid #dbe4ee;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+}
+
+.job-list li:hover {
+    box-shadow: 0 3px 8px rgba(80, 112, 189, 0.07);
+}
+
+.job-list strong {
+    font-size: 1.08rem;
+    color: #0943b0;
+}
+
+.job-list a {
+    background: #2376e8;
+    color: #fff !important;
+    padding: 6px 15px;
+    margin-top: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.15s;
+}
+
+.job-list a:hover {
+    background: #1452a2;
+    text-decoration: underline;
+}
+
+.pagination {
+    margin: 22px 0 12px 0;
+    text-align: center;
+}
+
+.pagination a {
+    background: #e7eefc;
+    color: #0072e3;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin: 0 2px;
+    border: 1px solid #cbe0fb;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.18s, color 0.18s;
+}
+
+.pagination a:hover {
+    background: #0072e3;
+    color: #fff;
+}
+
+.pagination span {
+    margin: 0 8px;
+    font-weight: 600;
+}
+
+
+.pagination .page-link {
+    color: #084298; /* Bootstrap 5 'text-primary' deep blue */
+    font-weight: 500;
+  }
+  .pagination .page-link:hover {
+    color: #052c65;
+    background-color: #e7f1ff;
+  }

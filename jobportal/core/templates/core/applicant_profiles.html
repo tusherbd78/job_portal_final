@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Applicant Profiles (Ranked)</h2>
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Experience</th>
+      <th>Education</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in applicants %}
+    <tr>
+      <td>{{ user.username }}</td>
+      <td>{{ user.experience_years }} years</td>
+      <td>
+        <ul>
+          {% for q in user.qualifications.all|dictsortreversed:"year" %}
+            <li>{{ q.degree|capfirst }} ({{ q.result }}){% if q.institution %} - {{ q.institution }}{% endif %}{% if q.year %}, {{ q.year }}{% endif %}</li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No applicant profiles found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'dashboard' %}">Back to Dashboard</a>
+
+{% endblock %}

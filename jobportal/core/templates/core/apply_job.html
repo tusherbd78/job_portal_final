@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Apply for {{ job.title }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %} <small style="color: #0943b0;">Only PDF files are allowed for resume upload.</small> {% endcomment %}
+    <button type="submit">Submit Application</button>
+</form>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <!-- Sidebar Menu -->
+    <div class="col-md-3 mb-4">
+      <div class="card shadow-sm rounded-3">
+        <div class="card-body">
+          <h4 class="mb-3">Menu</h4>
+          <ul class="list-group">
+            <li class="list-group-item border-0 px-0 py-1">
+              <a href="{% url 'dashboard' %}" class="text-decoration-none">Show My Applications</a>
+            </li>
+            <li class="list-group-item border-0 px-0 py-1">
+              <a href="{% url 'manage_qualifications' %}" class="text-decoration-none">Manage Qualifications</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <div class="card shadow rounded-3">
+        <div class="card-body">
+          <h2 class="mb-4 text-primary">My Applications</h2>
+
+          <!-- Status Filter Form -->
+          <form method="get" class="mb-4 d-flex align-items-center">
+            <label for="status" class="me-2 mb-0 fw-bold">Filter by Status:</label>
+            <select id="status" name="status" class="form-select w-auto me-2" onchange="this.form.submit()">
+              <option value="" {% if not selected_status %}selected{% endif %}>All</option>
+              <option value="pending" {% if selected_status == 'pending' %}selected{% endif %}>Pending</option>
+              <option value="approved" {% if selected_status == 'approved' %}selected{% endif %}>Approved</option>
+              <option value="rejected" {% if selected_status == 'rejected' %}selected{% endif %}>Rejected</option>
+            </select>
+            {% if selected_status %}
+              <a href="{% url 'dashboard' %}" class="btn btn-outline-secondary btn-sm ms-2">Reset</a>
+            {% endif %}
+          </form>
+
+          {% if applications %}
+            <div class="list-group">
+              {% for app in applications %}
+                <div class="list-group-item py-3 mb-2 rounded-3 border shadow-sm">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                      <h5 class="mb-1">{{ app.job.title }}</h5>
+                      <div class="text-muted small mb-2">
+                        {{ app.job.company_name }} &mdash; {{ app.job.location }}
+                      </div>
+                      <div>
+                        <span class="badge bg-info text-dark">Applied: {{ app.applied_at|date:"M d, Y H:i" }}</span>
+                        <a href="{{ app.resume.url }}" class="btn btn-outline-secondary btn-sm ms-2" target="_blank">
+                          View Resume
+                        </a>
+                      </div>
+                    </div>
+                    <div>
+                      <!-- Application Status Badge -->
+                      {% if app.status == "approved" %}
+                        <span class="badge bg-success fs-6">Approved</span>
+                      {% elif app.status == "rejected" %}
+                        <span class="badge bg-danger fs-6">Rejected</span>
+                      {% else %}
+                        <span class="badge bg-secondary fs-6">Pending</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="alert alert-info mt-3">
+              No applications{% if selected_status %} with selected status{% endif %} yet.
+            </div>
+          {% endif %}
+
+          <!-- Pagination -->
+          <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+              {% if applications.has_previous %}
+                <li class="page-item">
+                  <a class="page-link text-primary" href="?{% if selected_status %}status={{ selected_status }}&{% endif %}page=1">&laquo; First</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link text-primary" href="?{% if selected_status %}status={{ selected_status }}&{% endif %}page={{ applications.previous_page_number }}">Previous</a>
+                </li>
+              {% endif %}
+              <li class="page-item disabled">
+                <span class="page-link text-primary">
+                  Page {{ applications.number }} of {{ applications.paginator.num_pages }}
+                </span>
+              </li>
+              {% if applications.has_next %}
+                <li class="page-item">
+                  <a class="page-link text-primary" href="?{% if selected_status %}status={{ selected_status }}&{% endif %}page={{ applications.next_page_number }}">Next</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link text-primary" href="?{% if selected_status %}status={{ selected_status }}&{% endif %}page={{ applications.paginator.num_pages }}">Last &raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
