@@ -1,0 +1,15 @@
+Users:
+user1 P/W:1234
+user2 P/W:1234
+user3 P/W:1234
+user4 P/W:1234
+user5 P/W:1234
+
+Employers:
+admin1 P/W: 1234
+admin2 P/W: 1234
+admin3 P/W: 1234
+admin4 P/W: 1234 
+
+Admin(superuser):
+tusher P/W:123
